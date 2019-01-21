@@ -1,4 +1,4 @@
-# Generatory Flex i Bison - ćwiczenia
+# Generatory Flex i Bison
 
 W repozytorium znajduje się rozwiązanie zadania akademickiego Dr Jankowskiej dot. generatorów FLEX i BISON.
 
@@ -12,7 +12,7 @@ W repozytorium znajduje się rozwiązanie zadania akademickiego Dr Jankowskiej d
 > Poszczególne wiersze są niepuste i mają jednorodną postać, tzn. znajdujące się w nich liczby należą do tej samej kategorii (a, b, c lub d). Każda liczba w wierszu jest poprzedzona dowolną (niezerową) liczbą spacji lub znaków tabulacji.
 > Skonstruuj wyrażenie regularne/wzorzec definiujące opisany zbiór danych.
 
-#### Rozwiązanie
+### Rozwiązanie
 
 Rozwiązaniem jest następujący regex:
 
@@ -25,15 +25,15 @@ Rozwiązaniem jest następujący regex:
 > Zdefiniuj gramatykę bezkontekstową generującą zbiór zbiorów danych
 > scharakteryzowanych w zadaniu 6.
 
-#### Rozwiązanie
+### Rozwiązanie
 
-##### Symbol startowy:
+#### Symbol startowy:
 
 ```
 FILE
 ```
 
-##### Symbole terminalne:
+#### Symbole terminalne:
 
 ```
 NUMBER:         '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
@@ -49,13 +49,13 @@ DOT:            '.'
 TAB:            '\t'
 ```
 
-##### Symbole nieterminalne:
+#### Symbole nieterminalne:
 
 ```
 ALLNUM, WHITE, PLUSMINUS, DECIMAL, ALLHEX, HEX, LEFT_REAL, RIGHT_REAL, S_REAL, F_REAL, FILE, LINE, DECIMAL_LINE, HEX_LINE, S_REAL_LINE, F_REAL_LINE
 ```
 
-##### Reguły produkcji:
+#### Reguły produkcji:
 
 ```
 ALLNUM      -> NUMBER | ZERO
@@ -81,7 +81,7 @@ F_REAL_LINE     -> WHITE F_REAL | F_REAL_LINE F_REAL_LINE
 
 > Skonstruuj w języku Bison przetwornik weryfikujący poprawność budowy przedmiotowego zbioru danych i generujący na wyjściu ciąg liczb, w odpowiednich formatach, będących sumami liczb przechowywanych w kolejnych wierszach zbioru.
 
-#### Rozwiązanie
+### Rozwiązanie
 
 Program napisany w FLEX pełni rolę analizatora leksykalnego, który generuje tokeny z wejścia. Tokeny dostarczane są do analizatora składniowego, którym jest program napisany w BISON. Analizator składniowy analizuje tokeny i układa je w struktury, zgodnie z regułami produkcji. Jeżeli dane wejściowe są zgodnę z gramatyką, wykonywany jest kod w języku C (dodawanie kolejnych liczb).
 Rozwiązanie oparte jest na gramatyce zdefiniowanej w _zadaniu 6.1.b_.
@@ -91,7 +91,7 @@ Rozwiązanie oparte jest na gramatyce zdefiniowanej w _zadaniu 6.1.b_.
 > Załóż zmodyfikowaną postać zbioru z liczbami. Modyfikacja polega na jawnym umieszczeniu we wszystkich wierszach – numerów tych wierszy, od numeru 1 poczynając.
 > Skonstruuj w języku Bison przetwornik weryfikujący poprawność budowy przedmiotowego zbioru danych i generujący na wyjściu ciąg par liczb, z których pierwsza oznacza numer wiersza, a druga - sumę liczb przechowywanych w odpowiednim wierszu zbioru.
 
-#### Rozwiązanie
+### Rozwiązanie
 
 Rozwiązanie polegało na zmodyfikowaniu kodu z _zadania 6.1.c_. Należało dodać poprawne wyrażenie regularne w analizatorze leksykalnym, tak, aby indeks linii wykrywany był jako dodatkowy token. Następnie w analizatorze składniowym wystarczyło zmienić regułę produkcji odpowiedzialną za pojedyńczą linię.
 
